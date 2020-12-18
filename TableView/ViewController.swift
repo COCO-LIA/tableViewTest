@@ -70,4 +70,64 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         present(Alert, animated: true, completion: nil)
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "delete") { (action, sourceview, completion) in
+            print("ddddd")
+            completion(true)
+        }
+        
+        let modifyAction = UIContextualAction(style: .normal, title: "modify") { (action, sourceview, completion) in
+            print("aaaa")
+            completion(true)
+        }
+        
+        deleteAction.backgroundColor = .brown
+        modifyAction.backgroundColor = .purple
+        deleteAction.image = UIImage(systemName: "trash")
+        modifyAction.image = UIImage(named: "twotone_accessibility_new_black_24pt")
+        
+        
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction, modifyAction])
+        
+        return swipeConfig
+        
+    }
+
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let alarmAction = UIContextualAction(style: .normal, title: nil) { (action, sourceview, completion) in
+            print("aaaa")
+            completion(true)
+        }
+        
+        let starAction = UIContextualAction(style: .normal, title: nil) { (action, sourceview, completion) in
+            print("ssss")
+            completion(true)
+            
+        }
+        
+        alarmAction.backgroundColor = .blue
+        alarmAction.image = UIImage(named: "twotone_alarm_on_black_24pt")
+        starAction.backgroundColor = .clear
+        starAction.image = UIImage(named: "twotone_favorite_black_24pt")
+        
+        let swipeConfig = UISwipeActionsConfiguration(actions: [alarmAction, starAction])
+        
+        return swipeConfig
+        
+        
+        
+        
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        
+        
+        
+        return true
+    }
+    
 }
